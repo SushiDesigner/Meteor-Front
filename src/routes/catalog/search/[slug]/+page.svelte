@@ -123,7 +123,7 @@
             {#if items}
             {#each items as {Name, Price, ItemId, Hidden, Sales}}
             <Itemcard itemname={Name} itemid={ItemId} price={Price} sales={Sales}/>
-            <a class="unstyled block sm:hidden px-2" href="/catalog/{ItemId}/{Name.replace(/[^a-zA-Z ]/g, "").replaceAll(' ', '-')}"><div class="bg-surface-800 flex flex-row">
+            <a class="unstyled block sm:hidden px-2" href="/catalog/{ItemId}/{Name.replace(/[^0-9a-z ]/gi, '').replaceAll(' ', '-')}"><div class="bg-surface-800 flex flex-row">
                 <img class="w-20" alt="L" src="/api/thumbnailrender/asset/?id={ItemId}"/>
                 <div>
                     <h3 class="truncate">{Name}</h3>

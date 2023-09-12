@@ -98,8 +98,8 @@ $:type,updatecreations() // if type variable changes run updatecreations again
 </label>
 
 <label class="input-label gap-8">
-    <span class="pt-3">Description:</span>
-    <input bind:value={itemdesc} type="text" class="input input-bordered input-primary w-full max-w-md rounded-md" required>
+    <span class="">Description:</span>
+    <textarea bind:value={itemdesc} class="input input-bordered input-primary w-full max-w-md rounded-md" required></textarea>
 </label>
 
 <label class="input-label gap-8">

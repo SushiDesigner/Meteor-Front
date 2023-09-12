@@ -18,6 +18,7 @@ const defaultconfig = {
 		  "/favicon": deb,
 		  "/assets": deb,
 		  "/settings/": deb,
+		  "/admin/": deb,
 		}
 	  }
 };

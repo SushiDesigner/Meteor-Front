@@ -4,7 +4,7 @@
     import Itemcard from '../../components/itemcard.svelte';
     import Rocks from '../../components/rocks.svelte';
     import { url } from "$lib/url"
-    import { Avatar } from '@skeletonlabs/skeleton';
+    import { menu } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
     import type { PageData } from "../$types";
@@ -12,6 +12,7 @@
     let bodyparts = false
     let animations = false
     let items: any
+    let currentSort = "Oldest"
     $: query = $page.url.searchParams;
 
     export let data: PageData;
@@ -120,12 +121,41 @@
 
         
         <h3>{currentFilter}</h3>
+
+        <div class="flex flex-row ">
         <h4>{currentCategory}</h4>
+
+        <button class="ring-surface-500 hover:ring-surface-300 ring-2 rounded p-1 flex flex-row gap-x-3 relative ml-auto w-24" use:menu={{ menu: 'navigationsort' }}>
+            <h5 class="!text-sm hover:text-white">{currentSort}</h5>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="w-4 ml-auto"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            <nav class=" rounded-none mt-6 " data-menu="navigationsort">
+                <ul>
+                  <button class="btn bg-surface-700 !rounded-none text-sm">Oldest</button>
+                </ul>
+                <ul>
+                    <button class="btn bg-surface-700 !rounded-none text-sm">Newest</button>
+                  </ul>
+                <ul>
+                    <button class="btn bg-surface-700 !rounded-none text-sm">Bestselling</button>
+                </ul>
+                 <ul>
+                    <button class="btn bg-surface-700 !rounded-none text-sm">Price (High to Low)</button>
+                </ul>
+                <ul>
+                    <button class="btn bg-surface-700 !rounded-none text-sm">Price (Low to High)</button>
+                </ul>
+              </nav>
+        </button>
+
+
+
+        </div>
+
         <div class="flex flex-col flex-wrap sm:grid sm:grid-cols-6 sm:grid-rows-5 gap-2">
             {#if items}
             {#each items as {Name, Price, ItemId, Hidden, Sales}}
             <Itemcard itemname={Name} itemid={ItemId} price={Price} sales={Sales}/>
-            <a class="unstyled block sm:hidden px-2" href="/catalog/{ItemId}/{Name.replace(/[^a-zA-Z ]/g, "").replaceAll(' ', '-')}"><div class="bg-surface-800 flex flex-row">
+            <a class="unstyled block sm:hidden px-2" href="/catalog/{ItemId}/{Name.replace(/[^0-9a-z ]/gi, '').replaceAll(' ', '-')}"><div class="bg-surface-800 flex flex-row">
                 <img class="w-20" alt="L" src="/api/thumbnailrender/asset/?id={ItemId}"/>
                 <div>
                     <h3 class="truncate">{Name}</h3>

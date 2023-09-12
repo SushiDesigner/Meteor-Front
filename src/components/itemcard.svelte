@@ -37,12 +37,12 @@
     </script>
 
     <div class="card rounded-md card-glass-surface snap-center card-hover {width} relative hidden sm:block">
-        <a class="unstyled hidden sm:block" href="/catalog/{itemid}/{itemname.replace(/[^a-zA-Z ]/g, "").replaceAll(' ', '-')}">
+        <a class="unstyled hidden sm:block" href="/catalog/{itemid}/{itemname.replace(/[^0-9a-z ]/gi, '').replaceAll(' ', '-')}">
         {#if type != "Audio" && type != "Video"}
         {#if imageloading}
         <div class="w-36 h-36 rounded-none placeholder animate-pulse"></div>
         {/if}
-        <img alt="" class="avatar-image bg-surface-400-500-token w-full h-full flex aspect-square object-cover {imageloading === true ? 'hidden' : ''} " use:onload={()=> imageloading=false} src="/api/thumbnailrender/asset/?id={itemid}{moderation === false ? "": "&nonapproved=true"}" />
+        <img alt="" class="avatar-image bg-surface-400-500-token w-{width} h-{width} flex aspect-square object-cover  {imageloading === true ? 'hidden' : ''} " use:onload={()=> imageloading=false} src="/api/thumbnailrender/asset/?id={itemid}{moderation === false ? "": "&nonapproved=true"}" />
         {/if}
     </a>
 
@@ -61,13 +61,14 @@
 
         {#if interact === "true"}
         {#if equipped === true}
-        <button on:click={() => {action('remove',parseFloat({itemid}.itemid))}} class="btn variant-filled-primary rounded-md btn-sm absolute right-0 top-0">Remove</button>
+        <button on:click={() => {action('remove',parseFloat({itemid}.itemid))}} class="btn variant-filled-primary rounded-none btn-sm absolute right-0 top-0">Remove</button>
         {:else}
-        <button on:click={() => {action('wear',parseFloat({itemid}.itemid))}} class="btn variant-filled-primary rounded-md btn-sm absolute right-0 top-0">Wear</button>
+        <button on:click={() => {action('wear',parseFloat({itemid}.itemid))}} class="btn variant-filled-primary rounded-none btn-sm absolute right-0 top-0">Wear</button>
         {/if}
         {/if}
         <p class="truncate w-28">{itemname}</p>
-        {#if sales}
+
+        {#if interact !== "true"}
         <div class="!text-xs">{sales??"0"} Sales</div>
         {/if}
 

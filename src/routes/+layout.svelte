@@ -120,7 +120,7 @@ listenCookieChange(async ()=> {
 <div class="relative">
 	<input type="text" bind:value={search} on:click={() => {search = previousearch}} placeholder="Search" class="input input-bordered input-primary pr-8 w-full rounded-none" maxlength=50 required>
 	{#if search}
-	<svg on:click={()=>{search=""}} class="w-8 h-8 absolute inset-y-0 right-0 pt-2 pr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+	<svg on:click={()=>{search=""}} on:keydown on:keyup on:keypress class="w-8 h-8 absolute inset-y-0 right-0 pt-2 pr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 	{:else}
 	<svg class="w-8 h-8 absolute inset-y-0 right-0 pt-2 pr-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
 	{/if}
@@ -166,7 +166,7 @@ listenCookieChange(async ()=> {
 		<AppBar padding="px" slotLead="space-x-2">
 			<svelte:fragment slot="lead">
 				<a href="/home"><img src="/assets/images/logo600200.png" alt="meteorite" class="max-h-12 pl-6 hidden xl:block"></a>
-				<svg class="w-6 h-6 md:hidden block" on:click={drawerOpen} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+				<svg class="w-6 h-6 md:hidden block" on:click={drawerOpen} on:keydown on:keyup on:keypress fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
 				<a href="/home"><img src="/assets/images/logosmall.png" alt="meteorite" class="max-h-12 xl:hidden block"></a>
 				<div class="hidden md:block">
 					<a class="btn btn-sm rounded-none group relative" href="/games">Games
@@ -187,7 +187,7 @@ listenCookieChange(async ()=> {
 			<div class="relative hidden md:block">
 				<input type="text" bind:value={search} on:dblclick={() => {search = previousearch}} placeholder="Search" class="input input-bordered input-primary pr-8 w-48 lg:w-96 max-w-full rounded-md" maxlength=50 required> <!-- refill on double click as well -->
 				{#if search}
-				<svg on:click={()=>{search=""}} class="w-8 h-8 absolute inset-y-0 right-0 pt-2 pr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+				<svg on:click={()=>{search=""}} on:keydown on:keyup on:keypress class="w-8 h-8 absolute inset-y-0 right-0 pt-2 pr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 				{:else}
 				<svg class="w-8 h-8 absolute inset-y-0 right-0 pt-2 pr-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
 				{/if}
@@ -229,7 +229,7 @@ listenCookieChange(async ()=> {
 			<svelte:fragment slot="trail">
 					{#if data.user}
 					<Rocks/>
-					{coins??"0"}
+					{coins??"?"}
 					<span class="relative pr-2">
 						<button class="w-6 pt-2" use:menu={{ menu: 'navigation' }}>
 							<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

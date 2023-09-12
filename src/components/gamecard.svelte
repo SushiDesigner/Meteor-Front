@@ -27,7 +27,7 @@
     </script>
     {#if useragent.includes("Android") === true || useragent.includes("iPhone") === true}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="unstyled group" on:click={()=> {document.location.href="/games/"+idofgame+"/"+gamename.replace(/[^a-zA-Z ]/g, "").replaceAll(' ', '-')}}>
+    <div class="unstyled group" on:click={()=> {document.location.href="/games/"+idofgame+"/"+gamename.replace(/[^0-9a-z ]/gi, '').replaceAll(' ', '-')}}>
         <div class="card rounded-md card-glass-surface snap-center card-hover w-20 sm:w-40 relative">
             {#if imageloading}
             <div class="w-20 h-20 sm:w-40 sm:h-40 rounded-none placeholder animate-pulse"></div>
@@ -43,7 +43,7 @@
         </div>
     </div>
     {:else}
-    <a class="unstyled group" href="/games/{idofgame}/{gamename.replace(/[^a-zA-Z ]/g, "").replaceAll(' ', '-')}">
+    <a class="unstyled group" href="/games/{idofgame}/{gamename.replace(/[^0-9a-z ]/gi, '').replaceAll(' ', '-')}">
         <div class="card rounded-md card-glass-surface snap-center card-hover w-20 sm:w-40 relative">
             {#if imageloading}
             <div class="w-20 h-20 sm:w-40 sm:h-40 rounded-none placeholder animate-pulse"></div>

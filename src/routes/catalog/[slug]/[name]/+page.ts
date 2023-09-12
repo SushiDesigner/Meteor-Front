@@ -5,8 +5,8 @@ export const load = (async ({ fetch, params }) => {
   const res = await fetch(`http://mete0r.xyz/api/catalog/iteminfo/${params.slug}`)
   const data = await res.json()
   
-  if (params.name != data.iteminfo.Name.replace(/[^a-zA-Z ]/g, "").replaceAll(' ', '-')){
-    throw redirect(301,'/catalog/'+params.slug+'/'+data.iteminfo.Name.replace(/[^a-zA-Z ]/g, "").replaceAll(' ', '-'))
+  if (params.name != data.iteminfo.Name.replace(/[^0-9a-z ]/gi, '').replaceAll(' ', '-')){
+    throw redirect(301,'/catalog/'+params.slug+'/'+data.iteminfo.Name.replace(/[^0-9a-z ]/gi, '').replaceAll(' ', '-'))
   }
 
   if (data.error === false){
